@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/output.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+
+<body class="">
+  <div class="h-[100vh] w-full flex">
+    <%- include('partials/sidebar') %>
+    <div class="flex-1 flex flex-col">
+      <%- include('partials/nav') -%>
+      <div class="flex-1 w-full p-3 bg-gray-100 overflow-y-auto rounded-l-3xl">
+        <div class="py-3 px-5">
+          <h1 class="text-2xl font-semibold">Upload a file...! Mark Zen</h1>
+        </div>
+        <div class="py-3 px-5 flex gap-3">
+          <div class="rounded-lg h-[30px] px-3 w-fit border-[2px] border-black text-gray-400"><span id="folderCount">0</span> Folders</div>
+        </div>
+
+        <div class="w-full px-5 mt-5">
+          <div class="">
+
+          </div>
+          <div class="w-full py-5 px-5 bg-slate-300 rounded-3xl">
+            <input type="hidden" id="Uuid" value="<%= data %>">
+            <select id="folderSelect" type="text" name="password" class="h-[50px] outline-none w-full bg-slate-100 rounded-2xl flex items-center justify-center px-5 appearance-none my-3">
+            </select>
+            <div id="dropZone" class="h-[160px] w-full bg-slate-100 rounded-3xl flex items-center justify-center hidden">
+              <i class="bx bx-file text-4xl text-gray-300"></i>
+            </div>
+            <div class="pt-5">
+              <span class="font-medium" id="fileDesc">Please create a folder first before uploading</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/actions.js"></script>
+  <script src="/js/dado.js"></script>
+</body>
+
+</html>

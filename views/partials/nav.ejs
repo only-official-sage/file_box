@@ -1,0 +1,74 @@
+<div class="flex py-4 px-4 bg-white">
+  <div class="container mx-auto flex justify-between">
+    <div id="left" class='flex items-center'>
+
+    </div>
+    <div id="right" class='flex items-center gap-5'>
+
+
+      <% if (data) { const { username, email, storage, maxstorage } = user[0]; const initialUsername = username.slice(0, 1).toUpperCase(); const gapToFill = (storage > 0) ? Math.floor((storage / maxstorage) * 100) : 0;%>
+      <!-- <div id="search" class='h-[40px] w-[300px] bg-gray-100 rounded-lg hidden md:flex items-center overflow-hidden'>
+        <i class='bx bx-search px-4 text-lg text-gray-400'></i>
+        <input type="text" class='outline-none bg-none flex-1 h-full bg-gray-100 pr-5' placeholder='Search' />
+      </div> -->
+      <div id="btn">
+        <a href="/logout">
+          <button class='bg-blue-500 text-white px-5 py-2 rounded-lg'>Logout</button>
+        </a>
+      </div>
+      <div id='profile' class='flex items-start justify-center'>
+        <div id='self_logo' onclick="toggleItem();" class=' cursor-pointer h-[40px] w-[40px] rounded-full bg-gradient-to-t from-cyan-500 to-blue-700 flex items-center justify-center text-white font-semibold'>
+          <i class="bx bx-user text-white "></i>
+        </div>
+      </div>
+      <div class='profile-modal absolute right-5 z-20 top-20 shadow-md h-fit py-5 bg-white px-5 rounded-2xl hidden'>
+        <div class="flex items-center justify-center">
+          <span class="text-gray-300"><%= email %></span>
+        </div>
+        <div class="flex flex-col items-center justify-center mt-10">
+          <div class=" flex items-center justify-center h-[70px] w-[70px] rounded-full text-white bg-gradient-to-t from-cyan-500 to-blue-700">
+            <span class="text-2xl"><%= initialUsername %></span>
+          </div>
+          <div class="text-lg mt-1">
+            <span>Hi, <%= username %></span>
+          </div>
+        </div>
+        <div class="flex gap-1 mt-2">
+          <a href="/upload" class="flex items-center gap-3 h-[50px] w-full bg-gray-100 border-[2px] border-gray-300 rounded-r-lg rounded-l-[30px] px-2">
+            <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+              <i class="bx bx-plus text-blue-600"></i>
+            </div>
+            <span>Add</span>
+          </a>
+          <button onclick="logOutUser()" class="flex items-center gap-3 h-[50px] w-full bg-gray-100 border-[2px] border-gray-300 rounded-l-lg rounded-r-[30px] px-2">
+            <div class="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
+              <i class="bx bx-exit text-blue-600"></i>
+            </div>
+            <span>Logout</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2 mt-2 h-[50px] border-[2px] rounded-full relative overflow-hidden">
+          <div id="filler" class="absolute w-[<%= gapToFill %>%] h-full bg-blue-600 z-0 rounded-r-[10px]"></div>
+          <div class="flex items-center justify-center z-20 p-3">
+            <i class="bx bx-cloud text-2xl mr-2"></i> <span class="text-xs"> <b><%= gapToFill %>%</b> of <b><%= maxstorage %>GB</b> used</span>
+          </div>
+        </div>
+
+        <div class='container h-[1px] bg-gray-100 mt-5'></div>
+
+        <div id="search" class='h-[40px] w-[300px] bg-gray-100 rounded-lg flex items-center overflow-hidden'>
+          <!-- <i class='bx bx-search px-4 text-lg text-gray-400'></i> -->
+          <!-- <input type="text" class='outline-none bg-none flex-1 h-full bg-gray-100 pr-5' placeholder='Search' /> -->
+        </div>
+      </div>
+      <% } else { %>
+      <div id="btn">
+        <a href="/register">
+          <button class='bg-blue-500 text-white px-5 py-2 rounded-lg'>Register</button>
+        </a>
+      </div>
+      <% } %>
+
+    </div>
+  </div>
+</div>

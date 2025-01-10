@@ -1,0 +1,66 @@
+<div class="h-full w-[240px] bg-white">
+  <div class=" justify-between px-5">
+    <div class="h-[70px] flex items-center">
+      <div class="h-[40px] w-[40px] bg-black font-extrabold text-white flex items-center justify-center rounded-lg">
+        FB
+      </div>
+    </div>
+    <% if (data) { %>
+    <% 
+    const { username, email, storage, maxstorage } = user[0]; 
+    const initialUsername = username.slice(0, 1).toUpperCase(); 
+    const gapToFill = (storage > 0) ? Math.floor((storage / maxstorage) * 100) : 0;
+    %>
+    <div class="h-[40px] flex items-center">
+      <a href="/upload" class="w-full">
+        <div class="w-full bg-blue-500 text-white flex items-center cursor-pointer gap-3 px-5 py-2 rounded-lg">
+          <i class="bx bx-plus"></i> New
+        </div>
+      </a>
+    </div>
+    <div id="links" class="flex flex-col gap-0.5 mt-5">
+      <a href="/">
+        <div class="w-full py-2 px-3 rounded-2xl transition hover:bg-gray-100 flex items-center gap-2">
+          <i class="bx bx-box"></i>
+          <span class="text-black">Home</span>
+        </div>
+      </a>
+      <a href="/folders">
+        <div class="w-full py-2 px-3 rounded-2xl transition hover:bg-gray-100 flex items-center gap-2">
+          <i class="bx bx-folder"></i>
+          <span class="text-black">Folders</span>
+        </div>
+      </a> 
+
+      <div class="h-[30px]"></div>
+      <!-- <a href="/folders">
+        <div class="w-full py-2 px-3 rounded-2xl transition hover:bg-gray-100 flex items-center gap-2">
+          <i class="bx bx-time"></i>
+          <span class="text-black">Recent</span>
+        </div>
+      </a> -->
+      <div class="h-[30px]"></div>
+      <!-- <a href="#">
+        <div class="w-full py-2 px-3 rounded-2xl transition hover:bg-gray-100 flex items-center gap-2">
+          <i class="bx bx-trash"></i>
+          <span class="text-black">Trash</span>
+        </div>
+      </a> -->
+      <a href="/storage">
+        <div class="w-full py-2 px-3 rounded-2xl transition hover:bg-gray-100 flex items-center gap-2">
+          <i class="bx bx-cloud"></i>
+          <span class="text-black">Storage</span>
+        </div>
+      </a>
+
+      <div class="w-full py-2 px-4">
+        <div class="w-full h-[5px] bg-gray-300 flex">
+          <div id="filler" class="w-[<%= gapToFill %>%] h-full bg-blue-600"></div>
+          <div class="w-[3px] h-full bg-white"></div>
+        </div>
+      </div>
+    </div>
+    <% }  %>
+    
+  </div>
+</div>

@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/output.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+  
+<body class="">
+  <div class="h-[100vh] w-full flex">
+    <%- include('partials/sidebar') %>
+    <div class="flex-1 flex flex-col">
+      <%- include('partials/nav') %>
+      <div class="flex-1 w-full p-3 bg-gray-100 overflow-y-auto rounded-l-3xl">
+        <div class="py-3 px-5">
+          <h1 class="text-2xl font-semibold">Login to view your uploads</h1>
+        </div>
+
+        <div class="w-full px-5 mt-5">
+          <div class="">
+
+          </div>
+          <div class="pt-5">
+        </div>
+        <form id="loginUser" class="w-full py-5 px-5 bg-slate-200 rounded-3xl">
+            <div class="my-3">
+                <span class="text-3xl">Welcome Back..!</span>
+            </div>
+            <input type="email" name="email" class="h-[50px] outline-none w-full bg-slate-100 rounded-2xl flex items-center justify-center px-3 my-3" placeholder="Email address" />
+            <input type="password" name="password" class="h-[50px] outline-none w-full bg-slate-100 rounded-2xl flex items-center justify-center px-3 my-3" placeholder="Account password" />
+
+            <div class="py-3">
+                <button class="bg-blue-600 py-3 rounded-2xl w-full text-white">SIGN IN</button>
+            </div>
+            <div class="py-3 text-gray-400 text-center">
+                <p>Don't have an account <a href="/register" class="text-blue-600">create account</a></p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/actions.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+
+</html>

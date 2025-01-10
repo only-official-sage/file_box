@@ -1,0 +1,52 @@
+<% 
+const truncateText = (text, maxLength) => text.length> maxLength ? text.slice(0, maxLength) + '...' : text; 
+let fileToShow = 'folder';
+
+switch (icon) {
+    case 'zip':
+        fileToShow = 'archive';
+        break;
+    case 'img':
+        fileToShow = 'image';
+        break;
+    case 'audio':
+        fileToShow = 'music';
+        break;
+    case 'mp4':
+        fileToShow = 'video';
+        break;
+    case 'doc':
+        fileToShow = 'file';
+        break;
+    case 'pdf':
+        fileToShow = 'file-pdf';
+        break;
+    case 'apk':
+        fileToShow = 'android';
+        break;
+    default:
+        break;
+}
+
+%>
+
+<div class="relative h-[230px] w-[230px] pb-3 pl-3 pr-3 rounded-2xl bg-slate-200 flex flex-col">
+  <div class="h-[50px] w-full flex items-center justify-between">
+    <div class="h-[30px] w-[30px] rounded-lg bg-slate-300 flex items-center justify-center">
+      <i class="bx bx<%= (icon === 'apk')? 'l': '' %>-<%= fileToShow %> text-xl"></i>
+    </div>
+    <span class="font-bold"> <%= truncateText(foldername, 10) %> </span>
+    <div onclick="showActionModal(this)" class="h-[30px] w-[30px] transition cursor-pointer hover:bg-slate-300 rounded-lg flex items-center justify-center">
+      <i class="bx bx-dots-vertical-rounded text-xl"></i>
+    </div>
+  </div>
+
+    <a href="/folder/<%= foldername %>" class="flex-1 bg-slate-300 rounded-2xl overflow-hidden">
+      <div id="actionModal" class="h-full w-full transition-all flex flex-col items-center justify-center hidden">
+        <div onclick="deleteFolder(this)" id="folderDelBtn" class="h-[40px] w-[40px] flex items-center justify-center bg-gray-400 rounded-lg cursor-pointer" data-name="<%= foldername %>">
+          <i class="bx bx-trash text-2xl"></i>
+        </div>
+        <p id="deleteWarning" class="text-red-600 font-bold translate-y-[30px]"></p>
+      </div>
+    </a>
+</div>

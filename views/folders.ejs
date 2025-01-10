@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/output.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+
+<body class="">
+  <div class="h-[100vh] w-full flex">
+    <%- include('partials/sidebar') %>
+    <div class="flex-1 flex flex-col">
+      <%- include('partials/nav') -%>
+      <div class="flex-1 w-full p-8 bg-gray-100 overflow-y-auto rounded-l-3xl relative">
+
+        <div class="py-3">
+          <h1 class="text-2xl font-semibold">Here are your folders... <%= user[0].username %></h1>
+        </div>
+        <!-- <div class="py-3 flex gap-3">
+          <div class="rounded-lg h-[30px] px-3 w-fit border-[2px] border-black">300 Folders</div>
+        </div> -->
+
+        <div id="folderModal" class="flex gap-3 w-full z-10 bg-slate-200 bottom-0-0 left-0 items-center px-3 py-3 rounded-2xl hidden">
+          <div id="search" class='h-[40px] w-[300px] bg-slate-100 rounded-lg flex items-center overflow-hidden pr-3'>
+            <i class='bx bx-folder-plus px-4 text-lg text-gray-400'></i>
+            <input type="text" id="folderNameInput" class='outline-none bg-none flex-1 h-full bg-inherit' placeholder='Folder Name' />
+          </div>
+          <button id="folderBtn" class="bg-blue-600 py-2 rounded-lg px-5 text-white">CREATE</button>
+        </div>
+
+
+        <div class="py-5 bg-gray-100 flex items-center">
+          <!-- <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4 w-fit"> -->
+          <div class="flex flex-wrap gap-4 w-fit">
+
+            <div class="h-[230px] w-[230px] pb-3 pl-3 pr-3 rounded-2xl bg-slate-200 flex flex-col">
+              <input type="hidden" id="Uuid" value="<%= data %>">
+              <div class="h-[50px] w-full flex items-center justify-between">
+                <div class="h-[30px] w-[30px] rounded-lg bg-slate-300 flex items-center justify-center">
+                  <i class="bx bx-folder text-xl"></i>
+                </div>
+                <span class="font-bold"> NEW FOLDER </span>
+                <div class="h-[30px] w-[30px] transition cursor-pointer hover:bg-slate-300 rounded-lg flex items-center justify-center">
+                  <!-- <i class="bx bx-dots-vertical-rounded text-xl"></i> -->
+                </div>
+              </div>
+              <div class="flex-1 bg-slate-300 rounded-2xl flex items-center justify-center cursor-pointer" onclick="document.querySelector('#folderModal').classList.toggle('hidden')">
+                <I class="bx bx-plus text-4xl"></I>
+              </div>
+            </div>
+            
+            <% if (folders.length > 0) { folders.forEach( (folder, id) => { %>
+            <%- include('components/folder', {foldername: folder.foldername, icon: ''}) -%>
+            <% }) } else { %>
+              <div class="h-[230px] w-[230px] pb-3 pl-3 pr-3 rounded-2xl bg-yellow-200 flex flex-col">
+                <input type="hidden" id="Uuid" value="<%= data %>">
+                <div class="h-[50px] w-full flex items-center justify-between">
+                  <div class="h-[30px] w-[30px] rounded-lg bg-yellow-300 flex items-center justify-center">
+                    <i class="bx bx-info-circle text-xl text-white"></i>
+                  </div>
+                  <span class="font-bold"> NO FOLDERS</span>
+                  <div class="h-[30px] w-[30px] transition cursor-pointer hover:bg-slate-300 rounded-lg flex items-center justify-center">
+                    <!-- <i class="bx bx-dots-vertical-rounded text-xl"></i> -->
+                  </div>
+                </div>
+                <div class="flex-1 bg-yellow-300 rounded-2xl flex items-center justify-center">
+                  <I class="bx bx-folder-open text-4xl text-white"></I>
+                </div>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/actions.js"></script>
+  <script src="/js/createFolder.js"></script>
+</body>
+
+</html>

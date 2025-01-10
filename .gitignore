@@ -1,0 +1,59 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build and production output
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+
+# Operating system files
+Thumbs.db
+*.DS_Store
+
+# Cache directories
+.cache/
+.next/
+coverage/
+
+# Optional npm cache
+.npm/
+
+# Misc
+*.bak
+*.old
+
+# EJS-specific ignore rules (compiled files or temporary working files)
+views/**/*.ejs~
+views/**/*.ejs.bak
+views/**/*.ejs.temp
+
+# Files related to debugging or tooling
+.eslintcache

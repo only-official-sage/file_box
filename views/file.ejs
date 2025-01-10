@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/css/output.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+
+<body class="">
+  <div class="h-[100vh] w-full flex">
+    <%- include('partials/sidebar') %>
+    <div class="flex-1 flex flex-col">
+      <%- include('partials/nav') %>
+      <div class="flex-1 w-full p-3 bg-gray-100 overflow-y-auto rounded-l-3xl">
+        <div class="py-3 px-5">
+          <h1 class="text-2xl font-semibold">File Details for <%= files[0].docName %></h1>
+        </div>
+
+        <div class="mt-5 bg-gray-100 flex flex-col">
+          <div class="flex flex-wrap gap-4 w-full">
+            <% if (files.length > 0) { files.forEach( (file, id) => { %>
+
+            <% 
+            const truncateText = (text, maxLength) => text.length> maxLength ? text.slice(0, maxLength) + '...' : text; 
+            let fileToShow = 'file';
+
+            switch (file.docType) {
+                case 'application/x-zip-compressed':
+                    fileToShow = 'archive';
+                    break;
+                case 'image/jpeg':
+                    fileToShow = 'image';
+                    break;
+                case 'audio/x-m4a':
+                    fileToShow = 'music';
+                    break;
+                case 'video/mp4':
+                    fileToShow = 'video';
+                    break;
+                case 'doc':
+                    fileToShow = 'file';
+                    break;
+                case 'pdf':
+                    fileToShow = 'file-pdf';
+                    break;
+                case 'apk':
+                    fileToShow = 'android';
+                    break
+                case 'application/x-msdownload':
+                    fileToShow = 'windows';
+                    break;
+                default:
+                    break;
+            }
+
+            %>
+
+            <div class="h-[400px] w-full md:w-[400px] pb-3 pl-3 pr-3 rounded-2xl bg-slate-200 flex flex-col">
+              <div class="h-[50px] w-full flex items-center justify-between">
+                <div class="h-[30px] w-[30px] rounded-lg bg-slate-300 flex items-center justify-center">
+                  <i class="bx bx<%= (file.docType === 'application/x-msdownload' || file.docType == 'apk')? 'l': '' %>-<%= fileToShow %> text-xl"></i>
+                </div>
+                <span class="font-bold"> <%= truncateText(file.docName, 10) %> </span>
+                <div onclick="showActionModal(this)" class="h-[30px] w-[30px] transition cursor-pointer hover:bg-slate-300 rounded-lg flex items-center justify-center">
+                  <i class="bx bx-dots-vertical-rounded text-xl"></i>
+                </div>
+              </div>
+              <div class="flex-1 bg-slate-300 rounded-2xl overflow-hidden">
+                <div id="actionModal" class="h-full w-full transition-all flex flex-col items-center justify-center hidden">
+                  <div onclick="deleteFile(this)" id="folderDelBtn" class="h-[40px] w-[40px] flex items-center justify-center bg-gray-400 rounded-lg cursor-pointer" data-name="<%= file.doc %>">
+                    <i class="bx bx-trash text-2xl"></i>
+                  </div>
+                  <p id="deleteWarning" class="text-red-600 font-bold translate-y-[30px]"></p>
+                </div>
+              </div>
+            </div>
+
+            <% })} else { %>
+            <div class="w-full p-5">
+              <p class="bg-yellow-300 p-3 rounded-lg text-white">Your file(s) will show here when you upload any</p>
+            </div>
+            <% } %>
+          </div>
+
+          <% 
+            const { docName, docSize, docType, folder, doc } = files[0];
+            const size = docSize / (1024 * 1024)
+            let fileTypeToDisp = 'file';
+
+            switch (docType) {
+            case 'application/x-zip-compressed':
+            fileTypeToDisp = 'archive';
+            break;
+            case 'image/jpeg':
+            fileTypeToDisp = 'image';
+            break;
+            case 'audio/x-m4a':
+            fileTypeToDisp = 'music';
+            break;
+            case 'video/mp4':
+            fileTypeToDisp = 'video';
+            break;
+            case 'doc':
+            fileTypeToDisp = 'file';
+            break;
+            case 'pdf':
+            fileTypeToDisp = 'file-pdf';
+            break;
+            case 'apk':
+            fileTypeToDisp = 'android apk';
+            break
+            case 'application/x-msdownload':
+            fileTypeToDisp = 'windows installer';
+            break;
+            default:
+            break;
+            }
+          %>
+          <div class="flex flex-col  gap-2 py-5 mt-3">
+            <div class="my-3">
+              <h1 class="font-bold text-3xl">File Details</h1>
+            </div>
+            <div class="flex items-center justify-between h-[40px] w-[400px] border-[2px] border-gray-500 rounded-2xl p-2">
+              <h1>Name:</h1>
+              <div class="bg-blue-600 py-0.5 px-2 rounded-xl text-white">
+                <%= docName %>
+              </div>
+            </div>
+            <div class="flex items-center justify-between h-[40px] w-[400px] border-[2px] border-gray-500 rounded-2xl p-2">
+              <h1>Size:</h1>
+              <div class="bg-blue-600 py-0.5 px-2 rounded-xl text-white">
+                <%= size.toFixed(2) %>MB
+              </div>
+            </div>
+            <div class="flex items-center justify-between h-[40px] w-[400px] border-[2px] border-gray-500 rounded-2xl p-2">
+              <h1>File Type:</h1>
+              <div class="bg-blue-600 py-0.5 px-2 rounded-xl text-white">
+                <%= fileTypeToDisp %>
+              </div>
+            </div>
+            <div class="flex items-center justify-between h-[40px] w-[400px] border-[2px] border-gray-500 rounded-2xl p-2">
+              <h1>Folder:</h1>
+              <div class="bg-blue-600 py-0.5 px-2 rounded-xl text-white">
+                <%= folder %>
+              </div>
+            </div>
+            <a href="/download/<%= folder %>/<%= doc %>" download="<%= docName %>" class="flex items-center justify-center h-[40px] w-[400px] border-[2px] bg-green-500 text-white rounded-2xl p-2">
+              Download
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/actions.js"></script>
+</body>
+
+</html>
