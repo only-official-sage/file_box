@@ -68,7 +68,12 @@ if (process.env.NODE_ENV == 'DEV') {
       console.log(`Server @ http://localhost:${PORT}`);
     }); 
   })
+} else {
+  mongoose.connect('mongodb+srv://bradhunt408:aqsfc55sVIemikeO@cluster0.vdoxz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/file_box').then(() => {
+    console.log('connected on DB');
+  })
 }
+
 
 // Export for serverless
 export const handler = serverless(app);
