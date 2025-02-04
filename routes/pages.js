@@ -5,7 +5,7 @@ const router = express.Router();
 import { routeProtect } from '../middlewares/routeProtect.js'
 
 import Folder from '../models/Folder.js';
-import File from '../models/file.js';
+import File from '../models/File.js';
 import User from '../models/User.js';
 import { fileURLToPath } from 'url';
 import path from 'path';

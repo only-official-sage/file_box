@@ -5,7 +5,7 @@ import fs, { existsSync } from 'fs';
 import fsPromises from 'fs/promises';
 
 
-import File from '../models/file.js';
+import File from '../models/File.js';
 import Folder from '../models/Folder.js';
 import mongoose from 'mongoose';
 import User from '../models/User.js';
