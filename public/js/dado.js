@@ -72,6 +72,7 @@ dropZone.addEventListener('drop', (event) => {
     }
 });
 
+
 onload = () => {
     fetch(`http://localhost:4090/api/folders/${Uuid.value}`).then((res) => {
         if (res.ok) {
