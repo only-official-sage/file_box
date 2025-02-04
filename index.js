@@ -55,7 +55,6 @@ if (process.env.NODE_ENV === 'development') {
 
 // API Routes 
 app.use("/api", user);
-// Pages Routes
 app.use("/", pages);
 // Auth Routes
 app.use('/auth', auth) 
