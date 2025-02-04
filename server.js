@@ -8,15 +8,17 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 // import the router from the auth.js file
-import user from "../routes/user.js";
-import pages from "../routes/pages.js";
-import auth from "../routes/auth.js";
+import user from "./routes/user.js";
+import pages from "./routes/pages.js";
+import auth from "./routes/auth.js";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 app.use(session({
   secret: process.env.SESSION_SECRETE,
@@ -25,12 +27,12 @@ app.use(session({
   cookie: { secure: true }
 }))
 
+
+
 app.set("view engine", "ejs");
 // app.use(express.static("public"));
 app.use(express.static(path.resolve(__dirname, 'public')));
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 // Middleware
 app.use(express.json()); 
@@ -59,7 +61,7 @@ app.use("/", pages);
 app.use('/auth', auth) 
  
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/file_box', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/file_box')
   .then(() => {
     console.log('Connected to MongoDB');
     app.listen(PORT, () => {
